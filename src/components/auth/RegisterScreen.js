@@ -13,7 +13,7 @@ import { useForm } from "../../hooks/useForm";
 export const RegisterScreen = () => {
   const [formValues, handleInputChange] = useForm({
     name: "william",
-    email: "william@gmail.com",
+    email: "willo@gmail.com",
     password: "123456",
     password2: "123456",
   });

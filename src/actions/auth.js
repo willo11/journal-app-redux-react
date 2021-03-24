@@ -4,9 +4,15 @@ import { firebase, googleAuthProvider} from "../firebase/firebase-config";
 export const startLoginEmailPassword = (email,password) => {
   //peticion asyncrona que necesita un middleware, el dispatch lo obtiene gracias al thunk
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(login(123,'william'));
-    }, 3500);
+    firebase.auth().signInWithEmailAndPassword(email,password)
+    .then (({user})=>{
+      dispatch(
+        login(user.uid, user.displayName)
+      );
+    })
+    .catch (e => {
+      console.log(e);
+    })
   }
 }
 

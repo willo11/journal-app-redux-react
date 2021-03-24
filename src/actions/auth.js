@@ -1,11 +1,24 @@
 import { types } from "../types/types";
+import { firebase, googleAuthProvider} from "../firebase/firebase-config";
 
 export const startLoginEmailPassword = (email,password) => {
-  //peticion asyncrona que necesita un middleware, el dispatch lo octiene gracias al thunk
+  //peticion asyncrona que necesita un middleware, el dispatch lo obtiene gracias al thunk
   return (dispatch) => {
     setTimeout(() => {
       dispatch(login(123,'william'));
     }, 3500);
+  }
+}
+
+export const startGoogleLogin = () => {
+  //google singIn desfracmentacion user para obtener uid, displayname
+  return (dispatch) => {
+    firebase.auth().signInWithPopup(googleAuthProvider)
+      .then (({user}) => {
+        dispatch(
+          login(user.uid, user.displayName)
+        )
+      });
   }
 }
 

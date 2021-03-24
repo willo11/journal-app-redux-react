@@ -11,7 +11,7 @@ export const startLoginEmailPassword = (email,password) => {
 }
 
 export const startGoogleLogin = () => {
-  //google singIn desfracmentacion user para obtener uid, displayname
+  //google signIn desfracmentacion user para obtener uid, displayname
   return (dispatch) => {
     firebase.auth().signInWithPopup(googleAuthProvider)
       .then (({user}) => {

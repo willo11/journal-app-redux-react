@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import { removeError, setError } from "../../actions/ui";
@@ -18,6 +18,9 @@ export const RegisterScreen = () => {
 
   const dispatch = useDispatch();
 
+  //selector Choose info you want about the state
+  const { msgError } = useSelector((state) => state.ui);
+
   const handleRegister = (e) => {
     e.preventDefault();
     if (isFormValid()) {
@@ -26,25 +29,27 @@ export const RegisterScreen = () => {
   };
 
   const isFormValid = () => {
-      if (name.trim().length === 0) {
-        dispatch(setError('Name Is Required'))
-        return false;
-      } else if (!validator.isEmail(email)) {
-        dispatch(setError('Email not Valid'))
-        return false;
-      } else if (password !== password2 || password.length < 6) {
-        dispatch(setError('Password more than 6 characters and match each other'))
-        return false;
-      }
-      dispatch(removeError());
-      return true;
+    if (name.trim().length === 0) {
+      dispatch(setError("Name Is Required"));
+      return false;
+    } else if (!validator.isEmail(email)) {
+      dispatch(setError("Email not Valid"));
+      return false;
+    } else if (password !== password2 || password.length < 6) {
+      dispatch(
+        setError("Password more than 6 characters and match each other")
+      );
+      return false;
+    }
+    dispatch(removeError());
+    return true;
   };
 
   return (
     <>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleRegister}>
-        <div className="auth__alert-error">HOLA MUNDO</div>
+        {msgError && <div className="auth__alert-error">{msgError}</div>}
 
         <input
           className="auth__input"

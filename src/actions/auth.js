@@ -10,6 +10,22 @@ export const startLoginEmailPassword = (email,password) => {
   }
 }
 
+export const startRegisterWithEmailPasswordName = (email,password,name) => {
+  //create register with email password name
+  return (dispatch) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then (async({user}) => {
+      
+      await user.updateProfile({displayName: name});
+      dispatch(
+        login(user.uid, user.displayName)
+      );
+  })
+    .catch (e => {
+      console.log(e);
+    })
+}}
+
 export const startGoogleLogin = () => {
   //google signIn desfracmentacion user para obtener uid, displayname
   return (dispatch) => {
@@ -23,6 +39,7 @@ export const startGoogleLogin = () => {
 }
 
 export const login = (uid, displayName) => ({
+ 
   type: types.login,
   payload: {
     uid,

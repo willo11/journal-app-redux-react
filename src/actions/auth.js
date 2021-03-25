@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { types } from "../types/types";
 import { finishLoading, startLoading } from "./ui";
 import { firebase, googleAuthProvider} from "../firebase/firebase-config";
+import { noteLogout } from './notes';
 
 export const startLoginEmailPassword = (email,password) => {
   //peticion asyncrona que necesita un middleware, el dispatch lo obtiene gracias al thunk
@@ -68,6 +69,7 @@ export const starLogout = () => {
     await firebase.auth().signOut();
 
     dispatch(logout());
+    dispatch(noteLogout());
   }
 }
 

@@ -1,4 +1,5 @@
 import { db } from "../firebase/firebase-config";
+import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
 export const startNewNote = () => {

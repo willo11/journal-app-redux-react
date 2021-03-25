@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About this proyect
+Journal project for redux practice using react, using Firebase (dbaas), and cloudinary for api conection
 
 ## Available Scripts
 

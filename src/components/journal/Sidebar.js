@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { starLogout } from '../../actions/auth';
 import { JournalEntries } from './JournalEntries'
 
@@ -10,12 +10,14 @@ export const Sidebar = () => {
         dispatch(starLogout())
     }
 
+    const {name} = useSelector(state => state.auth);
+
     return (
         <aside className="journal__sidebar">
             <div className="journal__sidebar-navbar">
                 <h3>
                     <i className="far fa-moon"></i>
-                    <span>William</span>
+                    <span>{name}</span>
                 </h3>
 
                 <button className="btn" onClick={handleLogout} >

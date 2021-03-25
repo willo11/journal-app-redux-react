@@ -1,8 +1,9 @@
 .notes__main-content {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
+
 
 .notes__appbar {
   align-items: center;
@@ -13,6 +14,7 @@
   padding: 10px 20px 10px 20px;
 }
 
+
 .notes__content {
   display: flex;
   flex-direction: column;
@@ -20,12 +22,12 @@
   padding: 20px;
 }
 
-.notes__title-input,
-.notes__textarea {
+
+.notes__title-input, .notes__textarea {
   border: none;
 
-  &:focus {
-    outline: none;
+  &:focus{
+      outline: none;
   }
 }
 
@@ -44,7 +46,7 @@
   resize: none;
 }
 
-.notes__image{
-    box-shadow: 5px 5px $dark-grey;
-    height: 150px;
+.notes__image img {
+  box-shadow: 5px 5px $dark-grey;
+  height: 150px;
 }
